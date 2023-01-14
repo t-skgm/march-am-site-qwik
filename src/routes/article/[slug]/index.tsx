@@ -1,13 +1,10 @@
 import { component$, Resource } from "@builder.io/qwik";
-import type {
-  RequestHandler,
-  StaticGenerateHandler,
-} from "@builder.io/qwik-city";
+import type { RequestHandler } from "@builder.io/qwik-city";
 import { Link } from "@builder.io/qwik-city";
 import { useEndpoint } from "@builder.io/qwik-city";
 import { useLocation } from "@builder.io/qwik-city";
 import type { Content } from "~/api/contents";
-import { getContentsArticle, getContentsArticleList } from "~/api/contents";
+import { getContentsArticle } from "~/api/contents";
 import type { ArticleMetadata } from "~/domain/Article";
 
 type GetData = {
@@ -16,15 +13,8 @@ type GetData = {
 
 export const onGet: RequestHandler<GetData> = async ({ params }) => {
   const slug = params.slug;
-  const article = await getContentsArticle(slug);
+  const article = getContentsArticle(slug);
   return { article };
-};
-
-export const onStaticGenerate: StaticGenerateHandler = async () => {
-  const articleItems = await getContentsArticleList();
-  return {
-    params: articleItems?.map(({ slug }) => ({ slug })),
-  };
 };
 
 export default component$(() => {

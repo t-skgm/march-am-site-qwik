@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import type { ArticleMetadata } from "~/domain/Article";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
+console.log("------dirname", dirname);
 const contentsArticleDir = path.resolve(dirname, "../contents", "articles");
 
 export const getContentsArticleFiles = async () => {
@@ -35,9 +36,7 @@ export const getContentsArticleList = async (): Promise<
   });
 };
 
-export const getContentsArticle = async (
-  slug: string
-): Promise<Content<ArticleMetadata>> => {
+export const getContentsArticle = (slug: string): Content<ArticleMetadata> => {
   const { data, content } = matter.read(
     path.resolve(contentsArticleDir, `${slug}.md`),
     {}
