@@ -1,8 +1,8 @@
 {
-  "name": "my-qwik-basic-starter",
-  "description": "App with Routing built-in (recommended)",
+  "name": "march-am-site",
+  "description": "march-am-site",
   "engines": {
-    "node": ">=15.0.0"
+    "node": ">=16.0.0"
   },
   "private": true,
   "scripts": {
